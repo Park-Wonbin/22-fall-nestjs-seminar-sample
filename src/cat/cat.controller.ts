@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
 } from '@nestjs/common';
 import { CatService } from './cat.service';
@@ -24,7 +25,7 @@ export class CatController {
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number) {
+  delete(@Param('id', ParseIntPipe) id: number) {
     return this.catService.delete(id);
   }
 }

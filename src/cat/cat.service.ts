@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cat } from './entities/cat.entity';
@@ -26,6 +30,8 @@ export class CatService {
   }
 
   delete(id: number) {
+    // throw new ForbiddenException('권한 없음'); // 예시
+    // throw new BadRequestException('잘못된 요청'); // 예시
     return this.catRepository.delete({
       id: id,
     });
