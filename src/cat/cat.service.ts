@@ -26,6 +26,13 @@ export class CatService {
   find() {
     return this.catRepository.find({
       relations: ['user'],
+      select: {
+        user: {
+          id: true,
+          email: true,
+          name: true,
+        },
+      },
     });
   }
 

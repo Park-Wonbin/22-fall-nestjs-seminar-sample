@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Cat } from '../../cat/entities/cat.entity';
+import { UserRole } from '../user.meta';
 
 @Entity()
 export class User {
@@ -23,4 +24,17 @@ export class User {
 
   @OneToMany(() => Cat, (cat) => cat.user)
   cats: Cat[];
+
+  @Column({
+    // type: 'enum',
+    // enum: UserRole,
+    default: UserRole.user,
+  })
+  role: UserRole;
+
+  @Column()
+  encryptedPassword: string;
+
+  @Column()
+  cryptoSalt: string;
 }
